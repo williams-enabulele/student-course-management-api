@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
@@ -42,7 +43,7 @@ public class User {
                     content = @Content)})
     @GetMapping("/users")
     public ResponseEntity<Object> getUsers() {
-        var data = IUserService.getUsers();
+        List<UserDTO> data = IUserService.getUsers();
         return ResponseHandler.generateResponse("Retrieved all users", HttpStatus.OK, data);
     }
 
@@ -57,7 +58,7 @@ public class User {
     @PostMapping("/user/save")
     public ResponseEntity<Object> saveUser(@RequestBody AppUser appUser) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/user/save").toUriString());
-        var data = IUserService.saveUser(appUser);
+        AppUser data = IUserService.saveUser(appUser);
         return ResponseHandler.generateResponse("User Created", HttpStatus.OK, data);
 
     }
