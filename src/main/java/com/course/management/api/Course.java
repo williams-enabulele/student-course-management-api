@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @SecurityRequirement(name = "demo-api")
@@ -33,7 +35,7 @@ public class Course {
                     content = @Content)})
     @GetMapping("/courses")
     public ResponseEntity<Object> getCourses() {
-        var data = courseService.getCourses();
+        List<CourseDTO> data = courseService.getCourses();
         return ResponseHandler.generateResponse("Retrieved all courses", HttpStatus.OK, data);
     }
 }

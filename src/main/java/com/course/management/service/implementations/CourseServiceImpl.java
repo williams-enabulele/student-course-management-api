@@ -24,7 +24,7 @@ public class CourseServiceImpl implements ICourseService {
     @Override
     public CourseDTO saveCourse(CourseDTO courseDTO) {
         Course course = modelMapper.map(courseDTO, Course.class);
-        var response = courseRepository.save(course);
+        Course response = courseRepository.save(course);
         return  modelMapper.map(response, CourseDTO.class);
 
     }
